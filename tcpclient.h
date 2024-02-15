@@ -17,7 +17,7 @@ class TcpClient : public QObject
     Q_OBJECT
 
 public:
-    explicit TcpClient(QObject *parent = nullptr);
+    explicit TcpClient(QObject *parent = nullptr, QString NickName = nullptr);
     ~TcpClient(){};
     std::string getPeers(void);
     void firstConnect(std::string firstIp, int firstPort);

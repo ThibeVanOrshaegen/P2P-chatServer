@@ -9,7 +9,6 @@
 #include <QApplication>
 #include <QtWidgets>
 
-
 Userinterface::Userinterface(TcpClient * client) : Client(client) {
 
     // Create main window
@@ -67,6 +66,7 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
                              QMessageBox::warning(&window, "Error", "Message cannot be empty!");
                              return;
                          }
+
                          qDebug() << "Message sent: " << message;
                          debugTextEdit->appendPlainText("Message sent: " + message);
                          Client->sendToAll(message);
@@ -76,4 +76,20 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
     // Show window
     window.show();
 
+}
+
+
+QString createJSON(QString id, QString ip, quint16 port, QString message) {
+    //quint16 localPort() const;
+    //QHostAddress localAddress() const;
+    QDateTime date = QDateTime::currentDateTime();
+    QJsonObject jsonObj;
+    jsonObj["id"] = id;
+    jsonObj["ip"] = ip;
+    jsonObj["port"] = port;
+    jsonObj["timestamp"] = date.toString("dd/MM/yyyy hh:mm");
+    jsonObj["message"] = message;
+
+    QJsonDocument jsonDoc(jsonObj);
+    return jsonDoc.toJson(QJsonDocument::Compact);
 }
