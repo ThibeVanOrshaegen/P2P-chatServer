@@ -13,7 +13,6 @@
 Userinterface::Userinterface(TcpClient * client) : Client(client) {
 
     // Create main window
-    QWidget window;
     window.setWindowTitle("P2P Chat");
     window.setFixedSize(800, 500);
 

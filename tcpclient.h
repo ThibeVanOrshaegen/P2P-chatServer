@@ -34,7 +34,7 @@ public slots:
 private:
     QList<QTcpSocket *> m_sockets;
     QTcpServer *server;
-    Userinterface interface((TcpClient)this);
+    Userinterface userInterface;
 };
 
 #endif // TCPCLIENT_H

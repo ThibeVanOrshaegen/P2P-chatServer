@@ -14,7 +14,7 @@
 
 
 TcpClient::TcpClient(QObject *parent)
-    : QObject(parent)
+    : QObject(parent), userInterface(this)
 {
     // Create the server socket and listen for connections
     server = new QTcpServer(this);
