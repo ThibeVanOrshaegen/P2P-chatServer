@@ -8,21 +8,25 @@
 #include <QDebug>
 #include <QInputDialog>
 #include <QApplication>
-#include <iostream>
-#include <sstream>
 #include <string>
 #include <QtWidgets>
-
-
+#include "CreateJson.h"
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
     TcpClient client;
-
-    if (argc >= 3)
+    QString name = "TEST";
+    QString output;
+    output = createJSON(name, "192.168.0.1", 24042, "message" );
+    std::cout << output.toStdString();
+    if(argc >= 2){
+        client.setNickName(name);
+    }
+    if (argc >= 3){
         client.firstConnect(argv[1], atoi(argv[2]));
-
+    }
     return a.exec();
 }

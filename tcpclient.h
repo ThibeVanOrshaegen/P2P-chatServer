@@ -21,6 +21,9 @@ public:
     ~TcpClient(){};
     std::string getPeers(void);
     void firstConnect(std::string firstIp, int firstPort);
+    QString getNickName(void){return nickname;};
+    void setNickName(QString NickName){nickname = NickName;};
+    void getIP(void){};
 
 signals:
     void sendMessage(QString message);
@@ -36,6 +39,11 @@ private:
     QList<QTcpSocket *> m_sockets;
     QTcpServer *server;
     Userinterface userInterface;
+
+    QString nickname;
+    QString port;
+    QString ip;
+
 };
 
 #endif // TCPCLIENT_H
