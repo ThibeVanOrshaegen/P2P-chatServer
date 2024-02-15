@@ -8,21 +8,22 @@
 #include <QDebug>
 #include <QInputDialog>
 #include <QApplication>
-#include <iostream>
-#include <sstream>
 #include <string>
 #include <QtWidgets>
-
-
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    QString name = "this shit empty";
     TcpClient client;
 
-    if (argc >= 3)
-        client.firstConnect(argv[1], atoi(argv[2]));
-
+    if(argc >= 2){
+        name = argv[1];
+        client.setNickName(name);
+    }
+    if (argc >= 4){
+        client.firstConnect(argv[2], atoi(argv[3]));
+    }
     return a.exec();
 }
