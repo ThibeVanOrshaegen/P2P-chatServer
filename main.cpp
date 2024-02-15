@@ -20,10 +20,11 @@ int main(int argc, char *argv[])
     TcpClient client;
 
     if(argc >= 2){
+        name = argv[1];
         client.setNickName(name);
     }
-    if (argc >= 3){
-        client.firstConnect(argv[1], atoi(argv[2]));
+    if (argc >= 4){
+        client.firstConnect(argv[2], atoi(argv[3]));
     }
     return a.exec();
 }
