@@ -1,5 +1,5 @@
-#ifndef CREATEJSON_H
-#define CREATEJSON_H
+#ifndef JSON_H
+#define JSON_H
 
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -19,5 +19,7 @@ QString createJSON(QString id, QString ip, quint16 port, QString message) {
     return jsonDoc.toJson(QJsonDocument::Compact);
 }
 
-
-#endif // CREATEJSON_H
+QString JSONtoMessage(QString Json){
+    return Json;
+}
+#endif // JSON_H
