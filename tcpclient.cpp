@@ -1,4 +1,5 @@
 #include "tcpclient.h"
+#include "CreateJson.h"
 #include <QCoreApplication>
 #include <QObject>
 #include <QTcpSocket>
@@ -39,8 +40,11 @@ void TcpClient::sendToAll(QString message)
     for (QTcpSocket *socket : m_sockets)
     {
         //intercept for json
-        message = createJSON(getNickName(), socket->localAddress().toString(), socket->localPort(), message );
-        socket->write(message.toUtf8());
+        QString output;
+        output = createJSON(getNickName(), socket->localAddress().toString(), socket->localPort(), message );
+        std::cout << "json sent: " << message.toStdString()<<std::endl;
+
+        socket->write(output.toUtf8());
     }
 }
 

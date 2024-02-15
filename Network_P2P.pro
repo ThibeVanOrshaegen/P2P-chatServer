@@ -22,6 +22,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    CreateJson.h \
     jsonparser.h \
     tcpclient.h \
     userinterface.h

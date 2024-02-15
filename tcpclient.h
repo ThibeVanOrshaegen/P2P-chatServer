@@ -22,7 +22,8 @@ public:
     std::string getPeers(void);
     void firstConnect(std::string firstIp, int firstPort);
     QString getNickName(void){return nickname;};
-    void getIP(void);
+    void setNickName(QString NickName){nickname = NickName;};
+    void getIP(void){};
 
 signals:
     void sendMessage(QString message);
