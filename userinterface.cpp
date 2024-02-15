@@ -14,7 +14,7 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
 
     // Create main window
     window.setWindowTitle("P2P Chat");
-    window.setFixedSize(800, 500);
+    //window.setFixedSize(800, 500);
 
     // Create widgets
     QLabel* outputLabel = new QLabel("Enter message:");
