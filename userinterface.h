@@ -8,6 +8,7 @@ class Userinterface
 {
 public:
     Userinterface(TcpClient * client);
+    ~Userinterface(){};
 private:
     TcpClient * Client;
     QWidget window;

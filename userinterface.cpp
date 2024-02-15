@@ -14,7 +14,7 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
 
     // Create main window
     window.setWindowTitle("P2P Chat");
-    window.setFixedSize(800, 500);
+    //window.setFixedSize(800, 500);
 
     // Create widgets
     QLabel* outputLabel = new QLabel("Enter message:");
@@ -45,20 +45,20 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
 
 
 
-    QObject::connect(client, &TcpClient::newConnection, [&](QTcpSocket *socket)
+    QObject::connect(client, &TcpClient::newConnection, [client, debugTextEdit](QTcpSocket *socket)
                      {
                          qDebug() << "New connection from: " << socket->peerAddress().toString();
                          debugTextEdit->appendPlainText("New connection from: " + socket->peerAddress().toString());
                          QObject::connect(socket, &QTcpSocket::readyRead, client, &TcpClient::readFromAll);
                      });
 
-    QObject::connect(client, &TcpClient::newMessageReceived, [&](QString message)
+    QObject::connect(client, &TcpClient::newMessageReceived, [ receivedTextEdit](QString message)
                      {
                          qDebug() << "New message received: " << message;
                          receivedTextEdit->appendPlainText(message);
                      });
 
-    QObject::connect(sendButton, &QPushButton::clicked, [&]()
+    QObject::connect(sendButton, &QPushButton::clicked, [this, inputLineEdit, debugTextEdit]()
                      {
                          QString message = inputLineEdit->text();
                          if (message.isEmpty())
