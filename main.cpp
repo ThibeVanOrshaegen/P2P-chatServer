@@ -8,21 +8,19 @@
 #include <QDebug>
 #include <QInputDialog>
 #include <QApplication>
-#include <iostream>
-#include <sstream>
-#include <string>
 #include <QtWidgets>
-
-
+#include "jsonparser.h"
+#include <iostream>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    TcpClient client;
-
-    if (argc >= 3)
-        client.firstConnect(argv[1], atoi(argv[2]));
-
+    if (argc >= 2){
+        QString nickname;
+        nickname = argv[1];
+        TcpClient client(nullptr,nickname);
+        if (argc >= 4)
+            client.firstConnect(argv[2], atoi(argv[3]));
+    }
     return a.exec();
 }

@@ -2,6 +2,8 @@
 #define USERINTERFACE_H
 #include <QWidget>
 
+QString createJSON(QString id, QString ip, quint16 port, QString message);
+
 class TcpClient;
 
 class Userinterface

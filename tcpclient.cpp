@@ -13,8 +13,8 @@
 #include <QtWidgets>
 
 
-TcpClient::TcpClient(QObject *parent)
-    : QObject(parent), userInterface(this)
+TcpClient::TcpClient(QObject *parent, QString NickName)
+    : QObject(parent), userInterface(this), nickname(NickName)
 {
     // Create the server socket and listen for connections
     server = new QTcpServer(this);
@@ -35,8 +35,11 @@ void TcpClient::handleNewConnection()
 
 void TcpClient::sendToAll(QString message)
 {
+
     for (QTcpSocket *socket : m_sockets)
     {
+        //intercept for json
+        message = createJSON(getNickName(), socket->localAddress().toString(), socket->localPort(), message );
         socket->write(message.toUtf8());
     }
 }
