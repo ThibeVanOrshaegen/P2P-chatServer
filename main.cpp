@@ -10,18 +10,15 @@
 #include <QApplication>
 #include <string>
 #include <QtWidgets>
-#include "CreateJson.h"
+//#include "CreateJson.h"
 #include <iostream>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
-    TcpClient client;
     QString name = "TEST";
-    QString output;
-    output = createJSON(name, "192.168.0.1", 24042, "message" );
-    std::cout << output.toStdString();
+    TcpClient client;
+
     if(argc >= 2){
         client.setNickName(name);
     }
