@@ -1,23 +1,28 @@
+
+#include "tcpclient.h"
+#include <QCoreApplication>
+#include <QObject>
+#include <QTcpSocket>
+#include <qtcpserver.h>
+#include <QAbstractSocket>
+#include <QDebug>
+#include <QInputDialog>
+#include <QApplication>
 #include <iostream>
-#include "message_handler.h"
+#include <sstream>
+#include <string>
+#include <QtWidgets>
 
-int main()
+
+
+int main(int argc, char *argv[])
 {
-    // json structure
-    string jsonString = R"({
-        "id": 101,
-        "ip": "192.168.1.100",
-        "port": 8080
-    })";
+    QApplication a(argc, argv);
 
-    // working with namespace
-    Peer2Peer::message_handler *client_information = new Peer2Peer::message_handler();
-    client_information->readJsonMessage(jsonString);
+    TcpClient client;
 
-    // getters are ready to use for future work
-    cout << "ID: " << client_information->getID() << "\n";
-    cout << "IP: " << client_information->getIP() << "\n";
-    cout << "Port: " << client_information->getPort() << "\n";
+    if (argc >= 3)
+        client.firstConnect(argv[1], atoi(argv[2]));
 
-    return 0;
+    return a.exec();
 }
