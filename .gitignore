@@ -1,3 +1,4 @@
+
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
 p2pchatclient.pro.user
@@ -71,4 +72,6 @@ CMakeLists.txt.user*
 # --------
 *.dll
 *.exe
+
+Network_P2P.pro.user
 
