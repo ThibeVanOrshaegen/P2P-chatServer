@@ -1,4 +1,5 @@
 #include "userinterface.h"
+#include "CreateJson.h"
 #include "tcpclient.h"
 #include <QCoreApplication>
 #include <QObject>
@@ -66,6 +67,8 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
                              QMessageBox::warning(&window, "Error", "Message cannot be empty!");
                              return;
                          }
+                         //intercept for json
+                         message = createJSON(Client->getNickName(), Client->getIP(), Client->getPort(), message );
 
                          qDebug() << "Message sent: " << message;
                          debugTextEdit->appendPlainText("Message sent: " + message);

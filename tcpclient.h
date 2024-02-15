@@ -21,9 +21,11 @@ public:
     ~TcpClient(){};
     std::string getPeers(void);
     void firstConnect(std::string firstIp, int firstPort);
-    QString getNickName(void){return nickname;};
+    QString getNickName(void)   {return nickname;};
+    QString getIP(void)         {return server->serverAddress().toString();};
+    quint16 getPort(void)       {return server->serverPort();};
     void setNickName(QString NickName){nickname = NickName;};
-    void getIP(void){};
+
 
 signals:
     void sendMessage(QString message);
