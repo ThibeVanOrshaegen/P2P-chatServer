@@ -20,7 +20,7 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
     QLabel* outputLabel = new QLabel("Enter message:");
     QLineEdit* inputLineEdit = new QLineEdit();
     QPushButton* sendButton = new QPushButton("Send");
-    QLabel* inputLabel = new QLabel("Received messages:");
+    QLabel* inputLabel = new QLabel("Chat:");
     QPlainTextEdit* receivedTextEdit = new QPlainTextEdit();
     receivedTextEdit->setReadOnly(true);
     receivedTextEdit->setMaximumBlockCount(100);
@@ -58,7 +58,7 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
                          receivedTextEdit->appendPlainText(message);
                      });
 
-    QObject::connect(sendButton, &QPushButton::clicked, [this, inputLineEdit, debugTextEdit]()
+    QObject::connect(sendButton, &QPushButton::clicked, [this, inputLineEdit, debugTextEdit, receivedTextEdit]()
                      {
                          QString message = inputLineEdit->text();
                          if (message.isEmpty())
@@ -67,11 +67,13 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
                              QMessageBox::warning(&window, "Error", "Message cannot be empty!");
                              return;
                          }
+                         receivedTextEdit->appendPlainText(message);
                          //intercept for json
                          message = createJSON(Client->getNickName(), Client->getIP(), Client->getPort(), message );
 
                          qDebug() << "Message sent: " << message;
                          debugTextEdit->appendPlainText("Message sent: " + message);
+
                          Client->sendToAll(message);
                          inputLineEdit->clear();
                      });

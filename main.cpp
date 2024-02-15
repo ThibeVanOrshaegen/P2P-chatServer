@@ -15,7 +15,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QString name = "TEST";
+    QString name = "this shit empty";
     TcpClient client;
 
     if(argc >= 2){
