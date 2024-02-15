@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui network
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,11 +10,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    client.cpp \
+    connection.cpp \
     main.cpp \
-    message_handler.cpp
+    message_handler.cpp \
+    server.cpp
 
 HEADERS += \
-    message_handler.h
+    client.h \
+    connection.h \
+    message_handler.h \
+    server.h
 
 FORMS +=
 
