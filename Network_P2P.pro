@@ -12,7 +12,8 @@ CONFIG -= app_bundle
 
 SOURCES += \
         main.cpp \
-        tcpclient.cpp
+        tcpclient.cpp \
+        userinterface.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -20,4 +21,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    tcpclient.h
+    tcpclient.h \
+    userinterface.h

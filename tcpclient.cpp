@@ -1,4 +1,17 @@
 #include "tcpclient.h"
+#include <QCoreApplication>
+#include <QObject>
+#include <QTcpSocket>
+#include <qtcpserver.h>
+#include <QAbstractSocket>
+#include <QDebug>
+#include <QInputDialog>
+#include <QApplication>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <QtWidgets>
+
 
 TcpClient::TcpClient(QObject *parent)
     : QObject(parent)

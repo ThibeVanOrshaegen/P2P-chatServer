@@ -8,10 +8,9 @@
 #include <QAbstractSocket>
 #include <QDebug>
 #include <QInputDialog>
-
-#include <iostream>
-#include <sstream>
+#include "userinterface.h"
 #include <string>
+
 
 class TcpClient : public QObject
 {
@@ -35,6 +34,7 @@ public slots:
 private:
     QList<QTcpSocket *> m_sockets;
     QTcpServer *server;
+    Userinterface interface((TcpClient)this);
 };
 
 #endif // TCPCLIENT_H
