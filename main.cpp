@@ -21,7 +21,8 @@ int main(int argc, char *argv[])
 
     TcpClient client;
 
-    if (argc == 3)
+    if (argc >= 3)
         client.firstConnect(argv[1], atoi(argv[2]));
+
     return a.exec();
 }
