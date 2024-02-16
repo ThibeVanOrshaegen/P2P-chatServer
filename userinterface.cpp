@@ -1,5 +1,5 @@
 #include "userinterface.h"
-#include "CreateJson.h"
+#include "Json.h"
 #include "tcpclient.h"
 #include <QCoreApplication>
 #include <QObject>
@@ -55,7 +55,7 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
     QObject::connect(client, &TcpClient::newMessageReceived, [ receivedTextEdit](QString message)
                      {
                          qDebug() << "New message received: " << message;
-                         receivedTextEdit->appendPlainText(message);
+                         receivedTextEdit->appendPlainText(JSONtoMessage(message));
                      });
 
     QObject::connect(sendButton, &QPushButton::clicked, [this, inputLineEdit, debugTextEdit, receivedTextEdit]()
@@ -67,10 +67,10 @@ Userinterface::Userinterface(TcpClient * client) : Client(client) {
                              QMessageBox::warning(&window, "Error", "Message cannot be empty!");
                              return;
                          }
-                         receivedTextEdit->appendPlainText(message);
+
                          //intercept for json
                          message = createJSON(Client->getNickName(), Client->getIP(), Client->getPort(), message );
-
+                         receivedTextEdit->appendPlainText(JSONtoMessage(message));
                          qDebug() << "Message sent: " << message;
                          debugTextEdit->appendPlainText("Message sent: " + message);
 

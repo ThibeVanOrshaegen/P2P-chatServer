@@ -1,9 +1,11 @@
-#ifndef CREATEJSON_H
-#define CREATEJSON_H
+#ifndef JSON_H
+#define JSON_H
 
+#include "jsonparser.h"
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QString>
+#include <cstdio>
 QString createJSON(QString id, QString ip, quint16 port, QString message) {
     //quint16 localPort() const;
     //QHostAddress localAddress() const;
@@ -19,5 +21,11 @@ QString createJSON(QString id, QString ip, quint16 port, QString message) {
     return jsonDoc.toJson(QJsonDocument::Compact);
 }
 
+QString JSONtoMessage(QString Json){
 
-#endif // CREATEJSON_H
+    JsonParser Parser(Json);
+    QString output;
+    output = Parser.getId() +" "+ Parser.getTimestamp() +"\n"+ Parser.getMessage();
+    return output;
+}
+#endif // JSON_H

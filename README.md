@@ -21,8 +21,8 @@ The packets are sent using a JSON, something **Like this**
 
 ## TO DO 
 - [ ] Cleanup code, better readability
-- [ ] Username in arguments so that each client has unique username instead of ip being shown
-- [ ] Timestamps included for message sorting
+- [x] Username in arguments so that each client has unique username instead of ip being shown
+- [x] Timestamps included for message sorting
 - [ ] Allow for "enter" to be used as key input
 
 ### Optional stuff for Kobe
@@ -33,4 +33,4 @@ The packets are sent using a JSON, something **Like this**
 
 
 
- 
+
